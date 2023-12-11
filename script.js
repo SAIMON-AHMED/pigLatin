@@ -1,14 +1,27 @@
 function translatePigLatin(str) {
 
-  let regex = /^[^aeiou]+/ig;
-  if (regex.test(str)) {
-    let consonant = str.match(regex);
-    console.log(consonant)
-    
-    //str.concat(consonant[0]).splice(1).concat("ay").join("");
+  
+  if (/^[aeiou]/.test(str)) {
+    return str + "way";
   }
-  //return str;
-  return str;
+
+  let consonant = "";
+  let count = 0;
+  for (let i = 0; i < str.length; i++) {
+    
+    if (/^[^aeiou]+/.test(str)) {
+      consonant += str.match(/^[^aeiou]+/);
+      count = consonant.length;
+      str = str.slice(count);
+    } else {
+      break;
+    }
+
+  }
+
+  
+  return str + consonant + "ay";
 }
 
-console.log(translatePigLatin("clonsonant"));
+console.log(translatePigLatin("schwartz")); // print "artzschway"
+
